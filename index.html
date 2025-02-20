@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Condescending Math Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #question {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        #feedback {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        input, button {
+            font-size: 18px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Condescending Math Game</h1>
+    <p id="question"></p>
+    <input type="number" id="answer" placeholder="Your answer">
+    <button onclick="checkAnswer()">Submit</button>
+    <p id="feedback"></p>
+
+    <script>
+        let level = 1;
+        let num1, num2, correctAnswer;
+
+        const insults = [
+            "Even a toddler would get this right.",
+            "Wow, I didn't think it was possible to be this bad at math.",
+            "Your wife is reconsidering her life choices.",
+            "Are you sure you have a brain?", 
+            "You are the reason calculators exist."
+        ];
+
+        const condescendingPraises = [
+            "Your wife may not have married the biggest idiot alive after all.",
+            "I guess even you can get lucky sometimes.",
+            "A broken clock is right twice a day.",
+            "Congratulations, you have the math skills of a 5th grader.",
+            "Shocking! You actually got one right."
+        ];
+
+        function generateQuestion() {
+            num1 = Math.floor(Math.random() * (level * 10)) + 1;
+            num2 = Math.floor(Math.random() * (level * 10)) + 1;
+            correctAnswer = num1 + num2;
+            document.getElementById("question").textContent = `What is ${num1} + ${num2}?`;
+            document.getElementById("feedback").textContent = "";
+            document.getElementById("answer").value = "";
+        }
+
+        function checkAnswer() {
+            let userAnswer = parseInt(document.getElementById("answer").value);
+            let feedback = document.getElementById("feedback");
+
+            if (userAnswer === correctAnswer) {
+                feedback.textContent = condescendingPraises[Math.floor(Math.random() * condescendingPraises.length)];
+                level++;
+            } else {
+                feedback.textContent = insults[Math.floor(Math.random() * insults.length)];
+                level = Math.max(1, level - 1);
+            }
+            setTimeout(generateQuestion, 1500);
+        }
+
+        generateQuestion();
+    </script>
+</body>
+</html>
