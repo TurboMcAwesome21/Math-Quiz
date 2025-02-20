@@ -3,35 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Condescending Math Game</title>
+    <title>Math Quiz for Dummies</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             text-align: center;
             margin-top: 50px;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+        }
+        #container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            width: 50%;
+            margin: auto;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
         }
         #question {
-            font-size: 24px;
+            font-size: 28px;
             margin-bottom: 20px;
         }
         #feedback {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
             margin-top: 20px;
         }
         input, button {
-            font-size: 18px;
+            font-size: 20px;
             padding: 10px;
             margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #ff9800;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e68900;
         }
     </style>
 </head>
 <body>
-    <h1>Condescending Math Game</h1>
-    <p id="question"></p>
-    <input type="number" id="answer" placeholder="Your answer">
-    <button onclick="checkAnswer()">Submit</button>
-    <p id="feedback"></p>
+    <div id="container">
+        <h1>Math Quiz for Dummies</h1>
+        <p id="question"></p>
+        <input type="number" id="answer" placeholder="Your answer">
+        <button onclick="checkAnswer()">Submit</button>
+        <p id="feedback"></p>
+    </div>
 
     <script>
         let level = 1;
@@ -42,7 +64,22 @@
             "Wow, I didn't think it was possible to be this bad at math.",
             "Your wife is reconsidering her life choices.",
             "Are you sure you have a brain?", 
-            "You are the reason calculators exist."
+            "You are the reason calculators exist.",
+            "I hope you never do your own taxes.",
+            "You just made every math teacher cry.",
+            "My dog could solve this faster than you.",
+            "Were you dropped on your head as a child?",
+            "Your parents must be so proud... of your other siblings.",
+            "I'm losing faith in humanity just watching you struggle.",
+            "Your brain must be buffering.",
+            "Math is hard, but for you, it's impossible.",
+            "I've seen rocks solve equations faster than you.",
+            "You should consider hiring a tutor. Like, immediately.",
+            "This is the level of math they use to hand out free samples at the grocery store.",
+            "You have the math skills of a banana.",
+            "NASA won't be calling you anytime soon.",
+            "Are you sure you're awake?", 
+            "Somewhere, an abacus is weeping for you."
         ];
 
         const condescendingPraises = [
@@ -50,14 +87,28 @@
             "I guess even you can get lucky sometimes.",
             "A broken clock is right twice a day.",
             "Congratulations, you have the math skills of a 5th grader.",
-            "Shocking! You actually got one right."
+            "Shocking! You actually got one right.",
+            "I was starting to think you’d never get one right.",
+            "Even a blind squirrel finds a nut sometimes.",
+            "Maybe you have some potential after all... but I doubt it.",
+            "Oh wow, are you a secret math prodigy? Probably not.",
+            "You should frame this moment; it might not happen again soon.",
+            "Was that an accident or actual skill?", 
+            "I’ll mark this in the history books as the day you used your brain.",
+            "I didn’t think you had it in you.",
+            "Maybe there’s hope for you yet.",
+            "I’d pat you on the back, but I don’t want to encourage mediocrity.",
+            "Try not to hurt yourself celebrating.",
+            "Even my pet goldfish could do this, but good job I guess.",
+            "You’re still not Einstein, but hey, small victories.",
+            "You got one right! Do you need a moment to recover?"
         ];
 
         function generateQuestion() {
-            num1 = Math.floor(Math.random() * (level * 10)) + 1;
-            num2 = Math.floor(Math.random() * (level * 10)) + 1;
-            correctAnswer = num1 + num2;
-            document.getElementById("question").textContent = `What is ${num1} + ${num2}?`;
+            num1 = Math.floor(Math.random() * (level * 50)) + 10;
+            num2 = Math.floor(Math.random() * (level * 50)) + 10;
+            correctAnswer = num1 * num2;
+            document.getElementById("question").textContent = `What is ${num1} × ${num2}?`;
             document.getElementById("feedback").textContent = "";
             document.getElementById("answer").value = "";
         }
